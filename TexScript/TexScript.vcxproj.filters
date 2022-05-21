@@ -7,13 +7,40 @@
     <Filter Include="TexScript\Base">
       <UniqueIdentifier>{75482413-6116-1819-4AAA-883F3617F47D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TexScript\Lua">
+      <UniqueIdentifier>{1CB3B37C-8873-2FB3-51AE-7830BD2D748F}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\TexScript\Base\Application.hpp">
+      <Filter>TexScript\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Base\Base.hpp">
+      <Filter>TexScript\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Base\Log.hpp">
+      <Filter>TexScript\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Base\PlatformDetection.hpp">
+      <Filter>TexScript\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Lua\LuaScript.hpp">
+      <Filter>TexScript\Lua</Filter>
+    </ClInclude>
     <ClInclude Include="src\tspch.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\TexScript\Base\Application.cpp">
+      <Filter>TexScript\Base</Filter>
+    </ClCompile>
     <ClCompile Include="src\TexScript\Base\EntryPoint.cpp">
       <Filter>TexScript\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexScript\Base\Log.cpp">
+      <Filter>TexScript\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexScript\Lua\LuaScript.cpp">
+      <Filter>TexScript\Lua</Filter>
     </ClCompile>
     <ClCompile Include="src\tspch.cpp" />
   </ItemGroup>

@@ -1,0 +1,3 @@
+[submodule "TexScript/vendor/spdlog"]
+	path = TexScript/vendor/spdlog
+	url = https://github.com/gabime/spdlog

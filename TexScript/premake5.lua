@@ -19,7 +19,14 @@ project "TexScript"
 
 	includedirs
 	{
-		"src"
+		"src",
+		"vendor/spdlog/include",
+		"vendor/lua/include"
+	}
+
+	links
+	{
+		"vendor/lua/lua54.lib"
 	}
 
 	defines
@@ -42,6 +49,6 @@ project "TexScript"
 		optimize "on"
 
 	filter "configurations:Dist"
-		defines "´TS_DIST"
+		defines "TS_DIST"
 		runtime "Release"
 		optimize "on"

@@ -12,3 +12,6 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+
+#include "TexScript/Base/Base.hpp"
+#include "TexScript/Base/Log.hpp"
