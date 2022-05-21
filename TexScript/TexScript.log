@@ -1,2 +1,3 @@
-[17:34:14] [info] TEXSCRIPT: Initialized Log!
-[17:34:14] [info] TEXSCRIPT: Initialized App!
+[00:26:43] [info] TEXSCRIPT: Initialized Log!
+[00:26:43] [error] TEXSCRIPT: [LuaScript]: Could not load script (base/test2.lua)!
+[00:26:43] [info] TEXSCRIPT: Initialized App!
