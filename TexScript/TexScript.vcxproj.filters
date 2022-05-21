@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="TexScript">
+      <UniqueIdentifier>{0B0D133F-7777-C7B5-C0B5-785B2C5FA50A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TexScript\Base">
+      <UniqueIdentifier>{75482413-6116-1819-4AAA-883F3617F47D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\tspch.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\TexScript\Base\EntryPoint.cpp">
+      <Filter>TexScript\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tspch.cpp" />
+  </ItemGroup>
+</Project>
