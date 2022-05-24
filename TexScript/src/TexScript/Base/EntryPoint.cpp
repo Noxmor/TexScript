@@ -7,7 +7,7 @@ int main(int argc, char** argv)
 	TexScript::Log::Init();
 	TS_INFO("Initialized Log!");
 
-	TexScript::Application app;
+	TexScript::Application app("TexScript");
 	TS_INFO("Initialized App!");
 
 	app.Run();

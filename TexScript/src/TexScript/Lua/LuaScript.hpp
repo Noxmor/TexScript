@@ -1,10 +1,12 @@
 #pragma once
 
 extern "C" {
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
 }
+
+#include "TexScript/Engine/Core/Interface.hpp"
 
 namespace TexScript {
 
@@ -15,23 +17,36 @@ namespace TexScript {
 		~LuaScript();
 
 		bool Execute();
-
-		void Clean();
-
-		size_t GetStackCount() const { return lua_gettop(L); }
-
 		bool PushVarOnStack(const std::string& var);
 
+		void ClearStack();
+		size_t StackSize() const { return lua_gettop(L); }
+
+		bool Call(const std::string& luaFuncName, Interface& inf);
+
 		template<typename T>
-		T Get(const std::string& var)
+		void PushGlobalOnStack(const std::string& name, const T& global)
 		{
 			static_assert(false);
 		}
 
 		template<>
-		std::string LuaScript::Get<std::string>(const std::string& var)
+		void PushGlobalOnStack(const std::string& name, const CommandActionFlag& global)
 		{
-			std::string result;
+			lua_pushinteger(L, global);
+			lua_setglobal(L, name.c_str());
+		}
+
+		template<typename T>
+		T Var(const std::string& var)
+		{
+			static_assert(false);
+		}
+
+		template<>
+		std::string LuaScript::Var<std::string>(const std::string& var)
+		{
+			std::string result = "null";
 			if (!PushVarOnStack(var)) return result;
 			if (lua_isstring(L, -1))
 			{
@@ -43,27 +58,13 @@ namespace TexScript {
 		}
 
 		template<>
-		size_t LuaScript::Get<size_t>(const std::string& var)
-		{
-			size_t result = 0;
-			if (!PushVarOnStack(var)) return result;
-			if (lua_isnumber(L, -1))
-			{
-				result = (size_t)lua_tonumber(L, -1);
-				lua_pop(L, 1);
-			}
-
-			return result;
-		}
-
-		template<>
-		int LuaScript::Get<int>(const std::string& var)
+		int LuaScript::Var<int>(const std::string& var)
 		{
 			int result = 0;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isnumber(L, -1))
+			if (lua_isinteger(L, -1))
 			{
-				result = (int)lua_tonumber(L, -1);
+				result = (int)lua_tointeger(L, -1);
 				lua_pop(L, 1);
 			}
 
@@ -71,7 +72,63 @@ namespace TexScript {
 		}
 
 		template<>
-		float LuaScript::Get<float>(const std::string& var)
+		size_t LuaScript::Var<size_t>(const std::string& var)
+		{
+			size_t result = 0;
+			if (!PushVarOnStack(var)) return result;
+			if (lua_isinteger(L, -1))
+			{
+				result = (size_t)lua_tointeger(L, -1);
+				lua_pop(L, 1);
+			}
+
+			return result;
+		}
+
+		template<>
+		uint8_t LuaScript::Var<uint8_t>(const std::string& var)
+		{
+			uint8_t result = 0;
+			if (!PushVarOnStack(var)) return result;
+			if (lua_isinteger(L, -1))
+			{
+				result = (uint8_t)lua_tointeger(L, -1);
+				lua_pop(L, 1);
+			}
+
+			return result;
+		}
+
+		template<>
+		uint16_t LuaScript::Var<uint16_t>(const std::string& var)
+		{
+			uint16_t result = 0;
+			if (!PushVarOnStack(var)) return result;
+			if (lua_isinteger(L, -1))
+			{
+				result = (uint16_t)lua_tointeger(L, -1);
+				lua_pop(L, 1);
+			}
+
+			return result;
+		}
+
+		template<>
+		uint32_t LuaScript::Var<uint32_t>(const std::string& var)
+		{
+			uint32_t result = 0;
+			if (!PushVarOnStack(var)) return result;
+			if (lua_isinteger(L, -1))
+			{
+				result = (uint32_t)lua_tointeger(L, -1);
+				lua_pop(L, 1);
+			}
+
+			return result;
+		}
+
+		template<>
+		float LuaScript::Var<float>(const std::string& var)
 		{
 			float result = 0.0f;
 			if (!PushVarOnStack(var)) return result;
@@ -85,7 +142,7 @@ namespace TexScript {
 		}
 
 		template<>
-		bool LuaScript::Get<bool>(const std::string& var)
+		bool LuaScript::Var<bool>(const std::string& var)
 		{
 			bool result = false;
 			if (!PushVarOnStack(var)) return result;

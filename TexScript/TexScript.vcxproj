@@ -145,6 +145,12 @@
     <ClInclude Include="src\TexScript\Base\Base.hpp" />
     <ClInclude Include="src\TexScript\Base\Log.hpp" />
     <ClInclude Include="src\TexScript\Base\PlatformDetection.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\Command.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\CommandActionFlags.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\Console.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\GameConfig.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\Interface.hpp" />
     <ClInclude Include="src\TexScript\Lua\LuaScript.hpp" />
     <ClInclude Include="src\tspch.hpp" />
   </ItemGroup>
@@ -152,6 +158,7 @@
     <ClCompile Include="src\TexScript\Base\Application.cpp" />
     <ClCompile Include="src\TexScript\Base\EntryPoint.cpp" />
     <ClCompile Include="src\TexScript\Base\Log.cpp" />
+    <ClCompile Include="src\TexScript\Engine\Core\Console.cpp" />
     <ClCompile Include="src\TexScript\Lua\LuaScript.cpp" />
     <ClCompile Include="src\tspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

@@ -1,0 +1,2 @@
+CHARACTERS_PER_LINE = 100
+LANGUAGE = "english"

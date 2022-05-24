@@ -27,6 +27,8 @@
 #define TS_ASSERT(x, ...)
 #endif
 
+#define BIT(x) 1 << x
+
 namespace TexScript {
 
 	template<typename T>

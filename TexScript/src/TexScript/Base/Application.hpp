@@ -1,13 +1,13 @@
 #pragma once
 
-#include "TexScript/Lua/LuaScript.hpp"
+#include "TexScript/Engine/Core/Console.hpp"
 
 namespace TexScript {
 
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& title);
 		~Application() = default;
 
 		void Run();
@@ -19,7 +19,7 @@ namespace TexScript {
 
 	private:
 		bool m_Running = false;
-		Ref<LuaScript> m_LuaScript;
+		Scope<Console> m_Console;
 
 	private:
 		static Application* s_Instance;

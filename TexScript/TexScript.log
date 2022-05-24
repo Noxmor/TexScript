@@ -1,3 +1,8 @@
-[00:26:43] [info] TEXSCRIPT: Initialized Log!
-[00:26:43] [error] TEXSCRIPT: [LuaScript]: Could not load script (base/test2.lua)!
-[00:26:43] [info] TEXSCRIPT: Initialized App!
+[17:46:16] [info] TEXSCRIPT: Initialized Log!
+[17:46:16] [info] TEXSCRIPT: Successfully loaded config!
+[17:46:16] [error] TEXSCRIPT: [LuaScript]: Could not load script (base/commands.lua)!
+[17:46:16] [warning] TEXSCRIPT: [LuaScript]: Tried to execute invalid script (base/commands.lua)!
+[17:46:16] [error] TEXSCRIPT: Could not load command data!
+[17:46:16] [info] TEXSCRIPT: Successfully loaded game data!
+[17:46:16] [info] TEXSCRIPT: Initialized App!
+[17:46:18] [info] TEXSCRIPT: Shutting down App!

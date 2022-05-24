@@ -15,3 +15,7 @@
 
 #include "TexScript/Base/Base.hpp"
 #include "TexScript/Base/Log.hpp"
+
+#ifdef TS_PLATFORM_WINDOWS
+#include <Windows.h>
+#endif

@@ -28,6 +28,12 @@
       <Filter>TexScript\Lua</Filter>
     </ClInclude>
     <ClInclude Include="src\tspch.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\Console.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\GameConfig.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\Command.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\Interface.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\CommandActionFlags.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TexScript\Base\Application.cpp">
@@ -43,5 +49,6 @@
       <Filter>TexScript\Lua</Filter>
     </ClCompile>
     <ClCompile Include="src\tspch.cpp" />
+    <ClCompile Include="src\TexScript\Engine\Core\Console.cpp" />
   </ItemGroup>
 </Project>
