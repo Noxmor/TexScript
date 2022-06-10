@@ -16,148 +16,169 @@ namespace TexScript {
 		LuaScript(const std::string& filepath);
 		~LuaScript();
 
-		bool Execute();
-		bool PushVarOnStack(const std::string& var);
+		bool PushVarOnStack(const std::string& var) const;
 
-		void ClearStack();
-		size_t StackSize() const { return lua_gettop(L); }
+		void Pop(const int n) const;
+		void ClearStack() const;
+		size_t StackSize() const;
 
-		bool Call(const std::string& luaFuncName, Interface& inf);
+		void RegisterFunction(const lua_CFunction& func) const;
+		void RegisterGlobalFunction(const std::string& name, const lua_CFunction& func) const;
+
+		bool CheckInteger(const int index) const;
+		bool CheckNumber(const int index) const;
+		bool CheckBool(const int index) const;
+		bool CheckString(const int index) const;
+
+		int ToInteger(const int index) const;
+		float ToNumber(const int index) const;
+		bool ToBool(const int index) const;
+		std::string ToString(const int index) const;
+
+		bool Call(const std::string& luaFuncName, Interface& inf) const;
+
+		void CreateTable() const;
+
+		void PushTableInteger(const std::string& key, const int value, const int index) const;
+		void PushTableNumber(const std::string& key, const float value, const int index) const;
+		void PushTableBool(const std::string& key, const bool value, const int index) const;
+		void PushTableString(const std::string& key, const std::string& value, const int index) const;
+		void PushTableSubTable(const std::string& key, const int index) const;
+
+		void GetGlobal(const std::string& name) const;
+		void SetGlobal(const std::string& name) const;
+
+		void PushGlobalInteger(const std::string& name, const int global) const;
+		void PushGlobalNumber(const std::string& name, const float global) const;
+		void PushGlobalBool(const std::string& name, const bool global) const;
+		void PushGlobalString(const std::string& name, const std::string& global) const;
+
+		std::vector<std::string> GetStringsFromTable(const std::string& table) const;
 
 		template<typename T>
-		void PushGlobalOnStack(const std::string& name, const T& global)
+		T Var(const std::string& var) const
 		{
 			static_assert(false);
 		}
 
 		template<>
-		void PushGlobalOnStack(const std::string& name, const CommandActionFlag& global)
-		{
-			lua_pushinteger(L, global);
-			lua_setglobal(L, name.c_str());
-		}
-
-		template<typename T>
-		T Var(const std::string& var)
-		{
-			static_assert(false);
-		}
-
-		template<>
-		std::string LuaScript::Var<std::string>(const std::string& var)
+		std::string LuaScript::Var<std::string>(const std::string& var) const
 		{
 			std::string result = "null";
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isstring(L, -1))
+			if (CheckString(-1))
 			{
-				result = (std::string)lua_tostring(L, -1);
-				lua_pop(L, 1);
+				result = ToString(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		int LuaScript::Var<int>(const std::string& var)
+		int LuaScript::Var<int>(const std::string& var) const
 		{
 			int result = 0;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isinteger(L, -1))
+			if (CheckInteger(-1))
 			{
-				result = (int)lua_tointeger(L, -1);
-				lua_pop(L, 1);
+				result = ToInteger(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		size_t LuaScript::Var<size_t>(const std::string& var)
+		size_t LuaScript::Var<size_t>(const std::string& var) const
 		{
 			size_t result = 0;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isinteger(L, -1))
+			if (CheckInteger(-1))
 			{
-				result = (size_t)lua_tointeger(L, -1);
-				lua_pop(L, 1);
+				result = ToInteger(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		uint8_t LuaScript::Var<uint8_t>(const std::string& var)
+		uint8_t LuaScript::Var<uint8_t>(const std::string& var) const
 		{
 			uint8_t result = 0;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isinteger(L, -1))
+			if (CheckInteger(-1))
 			{
-				result = (uint8_t)lua_tointeger(L, -1);
-				lua_pop(L, 1);
+				result = ToInteger(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		uint16_t LuaScript::Var<uint16_t>(const std::string& var)
+		uint16_t LuaScript::Var<uint16_t>(const std::string& var) const
 		{
 			uint16_t result = 0;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isinteger(L, -1))
+			if (CheckInteger(-1))
 			{
-				result = (uint16_t)lua_tointeger(L, -1);
-				lua_pop(L, 1);
+				result = ToInteger(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		uint32_t LuaScript::Var<uint32_t>(const std::string& var)
+		uint32_t LuaScript::Var<uint32_t>(const std::string& var) const
 		{
 			uint32_t result = 0;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isinteger(L, -1))
+			if (CheckInteger(-1))
 			{
-				result = (uint32_t)lua_tointeger(L, -1);
-				lua_pop(L, 1);
+				result = ToInteger(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		float LuaScript::Var<float>(const std::string& var)
+		float LuaScript::Var<float>(const std::string& var) const
 		{
 			float result = 0.0f;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isnumber(L, -1))
+			if (CheckNumber(-1))
 			{
-				result = (float)lua_tonumber(L, -1);
-				lua_pop(L, 1);
+				result = ToNumber(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
 
 		template<>
-		bool LuaScript::Var<bool>(const std::string& var)
+		bool LuaScript::Var<bool>(const std::string& var) const
 		{
 			bool result = false;
 			if (!PushVarOnStack(var)) return result;
-			if (lua_isboolean(L, -1))
+			if (CheckBool(-1))
 			{
-				result = (bool)lua_toboolean(L, -1);
-				lua_pop(L, 1);
+				result = ToBool(-1);
+				Pop(1);
 			}
 
 			return result;
 		}
+
+		operator bool() const { return m_ValidScript; }
 
 	private:
 		lua_State* L;
 		std::string m_Filepath;
+		bool m_ValidScript = true;
 	};
 
 }

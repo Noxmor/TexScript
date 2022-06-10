@@ -42,7 +42,6 @@ project "TexScript"
 		runtime "Debug"
 		symbols "on"
 
-
 	filter "configurations:Release"
 		defines "TS_RELEASE"
 		runtime "Release"

@@ -152,6 +152,7 @@
     <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp" />
     <ClInclude Include="src\TexScript\Engine\Core\Interface.hpp" />
     <ClInclude Include="src\TexScript\Lua\LuaScript.hpp" />
+    <ClInclude Include="src\TexScript\Lua\LuaTable.hpp" />
     <ClInclude Include="src\tspch.hpp" />
   </ItemGroup>
   <ItemGroup>

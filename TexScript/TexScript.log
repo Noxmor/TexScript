@@ -1,8 +1,48 @@
-[17:46:16] [info] TEXSCRIPT: Initialized Log!
-[17:46:16] [info] TEXSCRIPT: Successfully loaded config!
-[17:46:16] [error] TEXSCRIPT: [LuaScript]: Could not load script (base/commands.lua)!
-[17:46:16] [warning] TEXSCRIPT: [LuaScript]: Tried to execute invalid script (base/commands.lua)!
-[17:46:16] [error] TEXSCRIPT: Could not load command data!
-[17:46:16] [info] TEXSCRIPT: Successfully loaded game data!
-[17:46:16] [info] TEXSCRIPT: Initialized App!
-[17:46:18] [info] TEXSCRIPT: Shutting down App!
+[18:09:13] [info] TEXSCRIPT: Initialized Log!
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_MAIN
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: main, Value : true
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_0
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 2, Value : MSG_1
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 3, Value : MSG_2
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_START
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_START
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_MODS
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_MODS
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_OPTIONS
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_OPTIONS
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 4
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_QUIT
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : Quit
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_MODS
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_OPTIONS
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[18:09:14] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
+[18:09:14] [info] TEXSCRIPT: Initialized App!
+[18:09:15] [info] TEXSCRIPT: Shutting down App!

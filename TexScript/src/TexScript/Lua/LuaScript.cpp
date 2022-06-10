@@ -4,74 +4,84 @@
 
 #include "TexScript/Engine/Core/Console.hpp"
 
+#include "TexScript/Lua/LuaTable.hpp"
+
 namespace TexScript {
 
-	static int LuaAddMessage(lua_State* L)
+	static LuaTable DecodeLuaTable(lua_State* const L)
 	{
-		if (lua_gettop(L) != 2 || !lua_isuserdata(L, 1) || !lua_isstring(L, 2)) return -1;
+		LuaTable table;
 
-		Interface* const inf = static_cast<Interface* const>(lua_touserdata(L, 1));
-		const std::string msg = (std::string)lua_tostring(L, 2);
-
-		inf->Messages.emplace_back(msg);
-
-		return 0;
-	}
-
-	static int LuaAddCommand(lua_State* L)
-	{
-		if (lua_gettop(L) < 3 || !lua_isuserdata(L, 1) || !lua_isstring(L, 2) || !lua_isinteger(L, 3)) return -1;
-
-		Interface* const inf = static_cast<Interface* const>(lua_touserdata(L, 1));
-		const std::string displayNameID = (std::string)lua_tostring(L, 2);
-		const int flags = (int)lua_tointeger(L, 3);
-
-		Command cmd(displayNameID, flags);
-
-		switch (flags)
+		lua_pushnil(L);
+		while (lua_next(L, -2) != 0)
 		{
-			case CommandActionFlag::None: break;
-			case CommandActionFlag::PushInf:
+			if (lua_type(L, -2) != LUA_TSTRING && lua_type(L, -2) != LUA_TNUMBER)
 			{
-				if (lua_gettop(L) != 4 || !lua_isstring(L, 4)) return -1;
-				cmd.PushInfID = (std::string)lua_tostring(L, 4);
-				break;
+				TS_ERROR("Key needs to be either of type string or of type integer!");
+				lua_pop(L, 1);
+				continue;
 			}
 
-			case CommandActionFlag::PopInf: break;
-			case CommandActionFlag::Quit: break;
+			if (lua_type(L, -2) == LUA_TNUMBER && !lua_isinteger(L, -2))
+			{
+				TS_ERROR("Key needs to be an integer, not a number!");
+				lua_pop(L, 1);
+				continue;
+			}
+
+			const std::string key = lua_type(L, -2) == LUA_TSTRING ? lua_tostring(L, -2) : std::to_string(lua_tointeger(L, -2));
+
+			if (lua_type(L, -1) == LUA_TSTRING)
+			{
+				const std::string value = lua_tostring(L, -1);
+				table.Insert(key, value);
+			}
+
+			if (lua_type(L, -1) == LUA_TNUMBER)
+			{
+				const int32_t value = lua_tonumber(L, -1);
+				table.Insert(key, value);
+			}
+
+			if (lua_type(L, -1) == LUA_TBOOLEAN)
+			{
+				const bool value = lua_toboolean(L, -1);
+				table.Insert(key, value);
+			}
+
+			if (lua_type(L, -1) == LUA_TTABLE)
+			{
+				LuaTable subTable = DecodeLuaTable(L);
+				table.Insert(key, subTable);
+			}
+
+			lua_pop(L, 1);
 		}
 
-		inf->Commands.emplace_back(cmd);
-
-		return 0;
+		return table;
 	}
 
-	static int LuaLoadLocale(lua_State* L)
+	static int LuaExtend(lua_State* L)
 	{
-		if (lua_gettop(L) != 2 || !lua_isstring(L, 1) || !lua_isstring(L, 2)) return -1;
+		if (lua_gettop(L) != 1 || lua_type(L, -1) != LUA_TTABLE) return -1;
+		
+		//Iteration over table passed in data.extend()
+		lua_pushnil(L);
+		while (lua_next(L, -2) != 0)
+		{
+			if (lua_type(L, -1) != LUA_TTABLE)
+			{
+				TS_ERROR("Expected a table in data.extend()!");
+				lua_pop(L, 2);
+				return -1;
+			}
 
-		const std::string key = (std::string)lua_tostring(L, 1);
-		const std::string value = (std::string)lua_tostring(L, 2);
-		Console::Get().LoadLocale(key, value);
+			const LuaTable root = DecodeLuaTable(L);
+			Console::Get().RegisterLuaTable(root);
 
-		return 0;
-	}
+			lua_pop(L, 1);
+		}
 
-	static int LuaPrintln(lua_State* L)
-	{
-		if (lua_gettop(L) != 1 || !lua_isstring(L, 1)) return -1;
-
-		const std::string  text = (std::string)lua_tostring(L, 1);
-		Console::Get().LuaPrintln(text);
-
-		return 0;
-	}
-
-	static int LuaStop(lua_State* L)
-	{
-		if (lua_gettop(L) != 0) return -1;
-		Console::Get().Stop();
 		return 0;
 	}
 
@@ -81,17 +91,21 @@ namespace TexScript {
 		L = luaL_newstate();
 		luaL_openlibs(L);
 
-		lua_register(L, "ts_message", LuaAddMessage);
-		lua_register(L, "ts_command", LuaAddCommand);
-		lua_register(L, "ts_locale", LuaLoadLocale);
-		lua_register(L, "ts_println", LuaPrintln);
-		lua_register(L, "ts_stop", LuaStop);
+		lua_newtable(L);
+		lua_pushstring(L, "extend");
+		lua_pushcfunction(L, LuaExtend);
+		lua_settable(L, -3); 
+		lua_setglobal(L, "data");
 
-		if (luaL_loadfile(L, filepath.c_str()))
+		luaL_dostring(L, "package.path = \"base/?.lua\"");
+
+		if (luaL_dofile(L, filepath.c_str()))
 		{
-			TS_ERROR("[LuaScript]: Could not load script ({0})!", filepath);
+			const std::string error = lua_tostring(L, -1);
+			TS_ERROR("Error during lua script execution ({0}): {1}", filepath, error);
 			lua_close(L);
 			L = nullptr;
+			m_ValidScript = false;
 		}
 	}
 
@@ -100,18 +114,7 @@ namespace TexScript {
 		if (L) lua_close(L);
 	}
 
-	bool LuaScript::Execute()
-	{
-		if (!L)
-		{
-			TS_WARN("[LuaScript]: Tried to execute invalid script ({0})!", m_Filepath);
-			return false;
-		}
-
-		return luaL_dofile(L, m_Filepath.c_str()) == LUA_OK;
-	}
-
-	bool LuaScript::PushVarOnStack(const std::string& var)
+	bool LuaScript::PushVarOnStack(const std::string& var) const
 	{
 		const bool containsFields = var.find(".") != std::string::npos;
 		const std::string global = containsFields ? var.substr(0, var.find(".")) : var;
@@ -120,7 +123,7 @@ namespace TexScript {
 		if (lua_isnil(L, -1))
 		{
 			TS_WARN("[LuaScript]: Var '{0}' is not defined!", global);
-			lua_pop(L, 1);
+			Pop(1);
 			return false;
 		}
 
@@ -146,7 +149,7 @@ namespace TexScript {
 			if (lua_isnil(L, -1))
 			{
 				TS_WARN("[LuaScript]: Field '{0}' (in {1}) is not defined!", field, var);
-				lua_pop(L, 2);
+				Pop(2);
 				return false;
 			}
 
@@ -157,12 +160,72 @@ namespace TexScript {
 		return true;
 	}
 
-	void LuaScript::ClearStack()
+	void LuaScript::Pop(const int n) const
+	{
+		lua_pop(L, n);
+	}
+
+	void LuaScript::ClearStack() const
 	{
 		lua_pop(L, lua_gettop(L));
 	}
 
-	bool LuaScript::Call(const std::string& luaFuncName, Interface& inf)
+	size_t LuaScript::StackSize() const
+	{
+		return lua_gettop(L);
+	}
+
+	void LuaScript::RegisterFunction(const lua_CFunction& func) const
+	{
+		lua_register(L, nullptr, func);
+	}
+
+	void LuaScript::RegisterGlobalFunction(const std::string& name, const lua_CFunction& func) const
+	{
+		lua_register(L, name.c_str(), func);
+	}
+
+	bool LuaScript::CheckInteger(const int index) const
+	{
+		return lua_isinteger(L, index);
+	}
+
+	bool LuaScript::CheckNumber(const int index) const
+	{
+		return lua_isnumber(L, index);
+	}
+
+	bool LuaScript::CheckBool(const int index) const
+	{
+		return lua_isboolean(L, index);
+	}
+
+	bool LuaScript::CheckString(const int index) const
+	{
+		return lua_isstring(L, index);
+	}
+
+	int LuaScript::ToInteger(const int index) const
+	{
+		return (int)lua_tointeger(L, index);
+	}
+
+	float LuaScript::ToNumber(const int index) const
+	{
+		return (float)lua_tonumber(L, index);
+	}
+
+	bool LuaScript::ToBool(const int index) const
+	{
+		return lua_toboolean(L, index);
+	}
+
+	std::string LuaScript::ToString(const int index) const
+	{
+		return lua_tostring(L, index);
+	}
+
+	bool LuaScript::Call(const std::string& luaFuncName, Interface& inf) const
 	{
 		if (!L)
 		{
@@ -174,14 +237,14 @@ namespace TexScript {
 		if (lua_isnil(L, -1))
 		{
 			TS_WARN("[LuaScript]: Function '{0}' (in {1}) is not defined!", luaFuncName, m_Filepath);
-			lua_pop(L, 1);
+			Pop(1);
 			return false;
 		}
 
 		if (!lua_isfunction(L, -1))
 		{
 			TS_WARN("[LuaScript]: '{0}' (in {1}) is not of type function!", luaFuncName, m_Filepath);
-			lua_pop(L, 1);
+			Pop(1);
 			return false;
 		}
 
@@ -191,11 +254,118 @@ namespace TexScript {
 		if (lua_isnil(L, -1))
 		{
 			TS_WARN("[LuaScript]: Error while calling function '{0}' (in {1})!", luaFuncName, m_Filepath);
-			lua_pop(L, 1);
+			Pop(1);
 			return false;
 		}
 
 		return true;
+	}
+
+	void LuaScript::CreateTable() const
+	{
+		lua_newtable(L);
+	}
+
+	void LuaScript::PushTableInteger(const std::string& key, const int value, const int index) const
+	{
+		lua_pushstring(L, key.c_str());
+		lua_pushinteger(L, value);
+		lua_settable(L, index);
+	}
+
+	void LuaScript::PushTableNumber(const std::string& key, const float value, const int index) const
+	{
+		lua_pushstring(L, key.c_str());
+		lua_pushnumber(L, value);
+		lua_settable(L, index);
+	}
+
+	void LuaScript::PushTableBool(const std::string& key, const bool value, const int index) const
+	{
+		lua_pushstring(L, key.c_str());
+		lua_pushboolean(L, value);
+		lua_settable(L, index);
+	}
+
+	void LuaScript::PushTableString(const std::string& key, const std::string& value, const int index) const
+	{
+		lua_pushstring(L, key.c_str());
+		lua_pushstring(L, value.c_str());
+		lua_settable(L, index);
+	}
+
+	void LuaScript::PushTableSubTable(const std::string& key, const int index) const
+	{
+		lua_pushstring(L, key.c_str());
+		lua_newtable(L);
+		lua_settable(L, index);
+	}
+
+	void LuaScript::GetGlobal(const std::string& name) const
+	{
+		lua_getglobal(L, name.c_str());
+	}
+
+	void LuaScript::SetGlobal(const std::string& name) const
+	{
+		lua_setglobal(L, name.c_str());
+	}
+
+	void LuaScript::PushGlobalInteger(const std::string& name, const int global) const
+	{
+		lua_pushinteger(L, global);
+		lua_setglobal(L, name.c_str());
+	}
+
+	void LuaScript::PushGlobalNumber(const std::string& name, const float global) const
+	{
+		lua_pushnumber(L, global);
+		lua_setglobal(L, name.c_str());
+	}
+
+	void LuaScript::PushGlobalBool(const std::string& name, const bool global) const
+	{
+		lua_pushboolean(L, global);
+		lua_setglobal(L, name.c_str());
+	}
+
+	void LuaScript::PushGlobalString(const std::string& name, const std::string& global) const
+	{
+		lua_pushstring(L, global.c_str());
+		lua_setglobal(L, name.c_str());
+	}
+
+	std::vector<std::string> LuaScript::GetStringsFromTable(const std::string& table) const
+	{
+		std::vector<std::string> strings;
+		//GetGlobal(table);
+		PushVarOnStack(table);
+		const size_t tableIndex = StackSize();
+
+		if (!lua_istable(L, tableIndex))
+		{
+			TS_ERROR("[LuaScript]: Specified name does not map to a lua table!");
+			Pop(1);
+			return strings;
+		}
+
+		lua_pushnil(L);
+		while (lua_next(L, tableIndex) != 0)
+		{
+			const std::string key = ToString(-2);
+			if (!CheckString(-1))
+			{
+				TS_WARN("[LuaScript]: Skipped non string element in table!");
+				continue;
+			}
+
+			strings.emplace_back(ToString(-1));
+			Pop(1);
+		}
+
+		Pop(2);
+
+		return strings;
 	}
 
 }

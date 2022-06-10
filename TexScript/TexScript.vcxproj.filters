@@ -7,6 +7,12 @@
     <Filter Include="TexScript\Base">
       <UniqueIdentifier>{75482413-6116-1819-4AAA-883F3617F47D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TexScript\Engine">
+      <UniqueIdentifier>{307D3C75-1C76-5BC7-45A8-404C31003BD3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TexScript\Engine\Core">
+      <UniqueIdentifier>{885F0323-F4CB-BE1D-BDBF-567B29EBE085}</UniqueIdentifier>
+    </Filter>
     <Filter Include="TexScript\Lua">
       <UniqueIdentifier>{1CB3B37C-8873-2FB3-51AE-7830BD2D748F}</UniqueIdentifier>
     </Filter>
@@ -24,16 +30,31 @@
     <ClInclude Include="src\TexScript\Base\PlatformDetection.hpp">
       <Filter>TexScript\Base</Filter>
     </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Core\Command.hpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Core\CommandActionFlags.hpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Core\Console.hpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Core\GameConfig.hpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Core\Interface.hpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\TexScript\Lua\LuaScript.hpp">
       <Filter>TexScript\Lua</Filter>
     </ClInclude>
+    <ClInclude Include="src\TexScript\Lua\LuaTable.hpp">
+      <Filter>TexScript\Lua</Filter>
+    </ClInclude>
     <ClInclude Include="src\tspch.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\Console.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\GameConfig.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\Command.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\Interface.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\CommandActionFlags.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TexScript\Base\Application.cpp">
@@ -45,10 +66,12 @@
     <ClCompile Include="src\TexScript\Base\Log.cpp">
       <Filter>TexScript\Base</Filter>
     </ClCompile>
+    <ClCompile Include="src\TexScript\Engine\Core\Console.cpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\TexScript\Lua\LuaScript.cpp">
       <Filter>TexScript\Lua</Filter>
     </ClCompile>
     <ClCompile Include="src\tspch.cpp" />
-    <ClCompile Include="src\TexScript\Engine\Core\Console.cpp" />
   </ItemGroup>
 </Project>

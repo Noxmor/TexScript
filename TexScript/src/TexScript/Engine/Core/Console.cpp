@@ -20,15 +20,20 @@ namespace TexScript {
 		SetTitle(title);
 
 		LoadConfig();
-		LoadGameData();
+		
+		LuaScript script("base/data.lua");
+		TS_ASSERT(script, "Script is not valid!");
 
-		//TODO: For test purpose, refactor into lua scripts!
-		m_InterfaceStack.push("INF_MAIN");
+		bool hasQuitCmd = false;
+		for (const Command& cmd : m_Interfaces.at(m_InterfaceStack.top()).Commands)
+		{
+			if (cmd.CommandActionFlags & CommandActionFlag::Quit)
+			{
+				hasQuitCmd = true;
+			}
+		}
 
-		RegisterInterface("INF_MAIN");
-		RegisterInterface("INF_MODS");
-
-		InterfaceFunctionCall(m_InterfaceStack.top(), "onPushInterface", true);
+		TS_ASSERT(hasQuitCmd, "The main interface needs to have a quit command!");
 	}
 
 	void Console::Shutdown()
@@ -58,13 +63,11 @@ namespace TexScript {
 			{
 				if (!cmd.PushInfID.empty())
 				{
-					InterfaceFunctionCall(m_InterfaceStack.top(), "onPopInterface", false);
 					m_InterfaceStack.push(cmd.PushInfID);
-					InterfaceFunctionCall(m_InterfaceStack.top(), "onPushInterface", true);
 				}
 				else
 				{
-					TS_WARN("Interface ID to push was not specified!");
+					TS_ERROR("Interface ID to push was not specified!");
 				}
 			}
 
@@ -72,13 +75,11 @@ namespace TexScript {
 			{
 				if (m_InterfaceStack.size() > 1)
 				{
-					InterfaceFunctionCall(m_InterfaceStack.top(), "onPopInterface", false);
 					m_InterfaceStack.pop();
-					InterfaceFunctionCall(m_InterfaceStack.top(), "onPushInterface", true);
 				}
 				else
 				{
-					TS_WARN("Interface Stack size is not big enough to pop!");
+					TS_ERROR("Interface Stack size is not big enough to pop!");
 				}
 			}
 		}
@@ -86,31 +87,55 @@ namespace TexScript {
 		Clear();
 	}
 
-	void Console::RegisterInterface(const std::string& id)
+	void Console::RegisterLuaTable(const LuaTable& table)
 	{
-		Interface inf;
-		m_Interfaces[id] = inf;
-
-		LuaScript script("base/interface/" + id + ".lua");
+		table.Print();
 		
-		if (script.Execute())
+		if (!table.HasStringData("type")) return;
+
+		const std::string& type = table.StringData().at("type");
+
+		if (type == "interface")
 		{
-			script.Call("onRegisterInterface", m_Interfaces.at(id));
+			const std::string& infID = table.StringData().at("id");
+			Interface inf;
+
+			if (table.HasBoolData("main"))
+			{
+				const bool isMainInf = table.BoolData().at("main");
+				if (isMainInf)
+					m_InterfaceStack.push(infID);
+			}
+
+			const LuaTable& commands = table.Children().at("commands");
+			for (auto& it = commands.Children().begin(); it != commands.Children().end(); ++it)
+			{
+				const std::string& cmdID = it->second.StringData().at("id");
+				std::string pushID;
+				if (it->second.HasStringData("push_id"))
+				{
+					pushID = it->second.StringData().at("push_id");
+				}
+
+				const LuaTable& flagsTable = it->second.Children().at("flags");
+				int flags = 0;
+				for (const auto& [key, flag] : flagsTable.StringData())
+				{
+					flags |= StringToCommandActionFlag(flag);
+				}
+
+				Command cmd(cmdID, flags);
+				cmd.PushInfID = pushID;
+				inf.Commands.emplace_back(cmd);
+			}
+
+			RegisterInterface(infID, inf);
 		}
 	}
 
-	void Console::LoadLocale(const std::string& key, const std::string& value)
+	void Console::RegisterInterface(const std::string& id, const Interface& inf)
 	{
-		if (key._Starts_with("CMD"))
-		{
-			m_GameData.CommandData[key] = value;
-			return;
-		}
-	}
-
-	void Console::LuaPrintln(const std::string& text)
-	{
-		Println(text);
+		m_Interfaces[id] = inf;
 	}
 
 	void Console::Stop()
@@ -157,18 +182,7 @@ namespace TexScript {
 
 	void Console::LoadConfig()
 	{
-		LuaScript script("config.lua");
-		if (!script.Execute())
-		{
-			TS_ERROR("Could not load config!");
-			return;
-		}
-
-		m_GameConfig.CharactersPerLine = script.Var<uint8_t>("CHARACTERS_PER_LINE");
-		m_GameConfig.CharactersPerLine = m_GameConfig.CharactersPerLine ? m_GameConfig.CharactersPerLine : 50;
-		m_GameConfig.Language = script.Var<std::string>("LANGUAGE");
-
-		TS_INFO("Successfully loaded config!");
+		//TODO: Load config
 	}
 
 	void Console::SaveConfig()
@@ -176,26 +190,9 @@ namespace TexScript {
 		const std::string content = "CHARACTERS_PER_LINE = " + std::to_string(m_GameConfig.CharactersPerLine) + '\n'
 			+ "LANGUAGE = \"" + m_GameConfig.Language + "\"";
 
-		std::ofstream of("config.lua");
+		std::ofstream of("config.cfg");
 		of << content;
 		of.close();
-	}
-
-	void Console::LoadGameData()
-	{
-		LuaScript commands("base/commands.lua");
-		if (!commands.Execute())
-		{
-			TS_ERROR("Could not load command data!");
-		}
-
-		LuaScript commandLocale("base/locale/" + m_GameConfig.Language + "/commands.lua");
-		if (!commandLocale.Execute())
-		{
-			TS_ERROR("Could not load command locale data!");
-		}
-
-		TS_INFO("Successfully loaded game data!");
 	}
 
 	void Console::Print(const std::string& text)
@@ -268,33 +265,6 @@ namespace TexScript {
 
 		Println("-----");
 		Print("-> ");
-	}
-
-	void Console::InterfaceFunctionCall(const std::string& infID, const std::string& func, const bool globals)
-	{
-
-		Interface& inf = m_Interfaces.at(infID);
-
-		LuaScript script("base/interface/" + infID + ".lua");
-		
-		if (globals)
-		{
-			script.PushGlobalOnStack("None", CommandActionFlag::None);
-			script.PushGlobalOnStack("PushInf", CommandActionFlag::PushInf);
-			script.PushGlobalOnStack("PopInf", CommandActionFlag::PopInf);
-			script.PushGlobalOnStack("Quit", CommandActionFlag::Quit);
-		}
-
-		if (func == "onPushInterface")
-		{
-			inf.Messages.clear();
-			inf.Commands.clear();
-		}
-
-		if (script.Execute())
-		{
-			script.Call(func, inf);
-		}
 	}
 
 }

@@ -7,6 +7,8 @@
 #include "TexScript/Engine/Core/Command.hpp"
 #include "TexScript/Engine/Core/Interface.hpp"
 
+#include "TexScript/Lua/LuaTable.hpp"
+
 namespace TexScript {
 
 	class Console
@@ -19,10 +21,9 @@ namespace TexScript {
 
 		void OnUpdate();
 
-		void RegisterInterface(const std::string& id);
-		void LoadLocale(const std::string& key, const std::string& value);
+		void RegisterLuaTable(const LuaTable& table);
 
-		void LuaPrintln(const std::string& text);
+		void RegisterInterface(const std::string& id, const Interface& inf);
 
 		void Stop();
 
@@ -39,13 +40,9 @@ namespace TexScript {
 		void LoadConfig();
 		void SaveConfig();
 
-		void LoadGameData();
-
 		void Print(const std::string& text);
 		void Println(const std::string& text);
 		void PrintInterface(const Interface& inf);
-
-		void InterfaceFunctionCall(const std::string& infID, const std::string& func, const bool globals);
 
 	private:
 		std::string m_Input;

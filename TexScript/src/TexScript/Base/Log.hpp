@@ -24,8 +24,16 @@ namespace TexScript {
 
 }
 
+#ifndef TS_DIST
 #define TS_TRACE(...)         ::TexScript::Log::GetLogger()->trace(__VA_ARGS__)
 #define TS_INFO(...)          ::TexScript::Log::GetLogger()->info(__VA_ARGS__)
 #define TS_WARN(...)          ::TexScript::Log::GetLogger()->warn(__VA_ARGS__)
 #define TS_ERROR(...)         ::TexScript::Log::GetLogger()->error(__VA_ARGS__)
 #define TS_CRITICAL(...)      ::TexScript::Log::GetLogger()->critical(__VA_ARGS__)
+#else
+#define TS_TRACE(...)
+#define TS_INFO(...)
+#define TS_WARN(...)
+#define TS_ERROR(...)
+#define TS_CRITICAL(...)
+#endif
