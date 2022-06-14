@@ -33,7 +33,7 @@ namespace TexScript {
 				TS_TRACE("[LuaTable]: " + levelLine + "(Data)Key: {0}, Value : {1}", it->first, it->second);
 			}
 
-			for (auto it = m_Children.begin(); it != m_Children.end(); ++it)
+			for (auto it = m_TableData.begin(); it != m_TableData.end(); ++it)
 			{
 				TS_TRACE("[LuaTable]: " + levelLine + "(Table)Name: {0}", it->first);
 				it->second.Print(level + 1);
@@ -43,30 +43,34 @@ namespace TexScript {
 		void Insert(const std::string& key, const std::string& value) { m_StringData[key] = value; }
 		void Insert(const std::string& key, const int32_t value) { m_IntData[key] = value; }
 		void Insert(const std::string& key, const bool value) { m_BoolData[key] = value; }
-		void Insert(const std::string& key, const LuaTable& table) { m_Children[key] = table; }
+		void Insert(const std::string& key, const LuaTable& table) { m_TableData[key] = table; }
 
 		bool HasStringData(const std::string& key) const { return m_StringData.find(key) != m_StringData.end(); }
 		bool HasIntData(const std::string& key) const { return m_IntData.find(key) != m_IntData.end(); }
 		bool HasBoolData(const std::string& key) const { return m_BoolData.find(key) != m_BoolData.end(); }
-		bool HasChildrenData(const std::string& key) const { return m_Children.find(key) != m_Children.end(); }
+		bool HasTableData(const std::string& key) const { return m_TableData.find(key) != m_TableData.end(); }
 
+		const std::string& StringData(const std::string& key) const { return m_StringData.at(key); }
+		std::string& StringData(const std::string& key) { return m_StringData.at(key); }
 		const std::unordered_map<std::string, std::string>& StringData() const { return m_StringData; }
-		std::unordered_map<std::string, std::string>& StringData() { return m_StringData; }
 
+		const int32_t& IntData(const std::string& key) const { return m_IntData.at(key); }
+		int32_t IntData(const std::string& key) { return m_IntData.at(key); }
 		const std::unordered_map<std::string, int32_t>& IntData() const { return m_IntData; }
-		std::unordered_map<std::string, int32_t>& IntData() { return m_IntData; }
 
+		const bool& BoolData(const std::string& key) const { return m_BoolData.at(key); }
+		bool BoolData(const std::string& key) { return m_BoolData.at(key); }
 		const std::unordered_map<std::string, bool>& BoolData() const { return m_BoolData; }
-		std::unordered_map<std::string, bool>& BoolData() { return m_BoolData; }
 
-		const std::unordered_map<std::string, LuaTable>& Children() const { return m_Children; }
-		std::unordered_map<std::string, LuaTable>& Children() { return m_Children; }
+		const LuaTable& TableData(const std::string& key) const { return m_TableData.at(key); }
+		LuaTable& TableData(const std::string& key) { return m_TableData.at(key); }
+		const std::unordered_map<std::string, LuaTable>& TableData() const { return m_TableData; }
 
 	private:
 		std::unordered_map<std::string, std::string> m_StringData;
 		std::unordered_map<std::string, int32_t> m_IntData;
 		std::unordered_map<std::string, bool> m_BoolData;
-		std::unordered_map<std::string, LuaTable> m_Children;
+		std::unordered_map<std::string, LuaTable> m_TableData;
 	};
 
 }

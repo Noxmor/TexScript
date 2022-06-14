@@ -10,6 +10,7 @@ namespace TexScript {
 	{
 		std::vector<std::string> Messages;
 		std::vector<Command> Commands;
+		Command CustomCommand;
 	};
 
 }

@@ -6,7 +6,7 @@ extern "C" {
 #include <lualib.h>
 }
 
-#include "TexScript/Engine/Core/Interface.hpp"
+#include "TexScript/Engine/Interface/Interface.hpp"
 
 namespace TexScript {
 
@@ -20,7 +20,7 @@ namespace TexScript {
 
 		void Pop(const int n) const;
 		void ClearStack() const;
-		size_t StackSize() const;
+		int StackSize() const;
 
 		void RegisterFunction(const lua_CFunction& func) const;
 		void RegisterGlobalFunction(const std::string& name, const lua_CFunction& func) const;
@@ -35,7 +35,7 @@ namespace TexScript {
 		bool ToBool(const int index) const;
 		std::string ToString(const int index) const;
 
-		bool Call(const std::string& luaFuncName, Interface& inf) const;
+		bool Call(const std::string& luaFuncName, const size_t numArgs, const size_t numResults) const;
 
 		void CreateTable() const;
 
@@ -173,12 +173,13 @@ namespace TexScript {
 			return result;
 		}
 
-		operator bool() const { return m_ValidScript; }
+		lua_State* const LuaState() const { return L; }
+
+		operator bool() const { return L; }
 
 	private:
 		lua_State* L;
 		std::string m_Filepath;
-		bool m_ValidScript = true;
 	};
 
 }

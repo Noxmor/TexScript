@@ -45,7 +45,7 @@
     <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp">
       <Filter>TexScript\Engine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\TexScript\Engine\Core\Interface.hpp">
+    <ClInclude Include="src\TexScript\Engine\Interface\Interface.hpp">
       <Filter>TexScript\Engine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\TexScript\Lua\LuaScript.hpp">
@@ -55,6 +55,11 @@
       <Filter>TexScript\Lua</Filter>
     </ClInclude>
     <ClInclude Include="src\tspch.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Interface\InterfaceHandler.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Location\Location.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\LocaleHandler.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Items\ItemStack.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Location\LocationHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TexScript\Base\Application.cpp">
@@ -73,5 +78,8 @@
       <Filter>TexScript\Lua</Filter>
     </ClCompile>
     <ClCompile Include="src\tspch.cpp" />
+    <ClCompile Include="src\TexScript\Engine\Interface\InterfaceHandler.cpp" />
+    <ClCompile Include="src\TexScript\Engine\Core\LocaleHandler.cpp" />
+    <ClCompile Include="src\TexScript\Engine\Location\LocationHandler.cpp" />
   </ItemGroup>
 </Project>

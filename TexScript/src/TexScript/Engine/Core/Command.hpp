@@ -13,6 +13,7 @@ namespace TexScript {
 
 		std::string PushInfID;
 
+		Command() = default;
 		Command(const std::string& displayNameID, const int commandActionFlags)
 			: DisplayNameID(displayNameID), CommandActionFlags(commandActionFlags)
 		{

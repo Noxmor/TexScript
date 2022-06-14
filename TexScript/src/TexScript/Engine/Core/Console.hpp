@@ -1,12 +1,17 @@
 #pragma once
 
-#include <stack>
-
 #include "TexScript/Engine/Core/GameConfig.hpp"
 #include "TexScript/Engine/Core/GameData.hpp"
 #include "TexScript/Engine/Core/Command.hpp"
-#include "TexScript/Engine/Core/Interface.hpp"
+#include "TexScript/Engine/Core/LocaleHandler.hpp"
 
+#include "TexScript/Engine/Interface/InterfaceHandler.hpp"
+
+#include "TexScript/Engine/Location/LocationHandler.hpp"
+
+#include "TexScript/Engine/Items/ItemStack.hpp"
+
+#include "TexScript/Lua/LuaScript.hpp"
 #include "TexScript/Lua/LuaTable.hpp"
 
 namespace TexScript {
@@ -22,8 +27,8 @@ namespace TexScript {
 		void OnUpdate();
 
 		void RegisterLuaTable(const LuaTable& table);
-
-		void RegisterInterface(const std::string& id, const Interface& inf);
+		void LuaAddCommand(const std::string& infID, const LuaTable& cmdTable);
+		void LuaClearCommands(const std::string& infID);
 
 		void Stop();
 
@@ -37,22 +42,36 @@ namespace TexScript {
 		void GetInput();
 		void GetCommandFromInput();
 
+		void Load();
 		void LoadConfig();
+		void LoadSaveGame();
+
+		void Save();
 		void SaveConfig();
+		void SaveGame();
 
 		void Print(const std::string& text);
 		void Println(const std::string& text);
+		void PrintPartingLine();
 		void PrintInterface(const Interface& inf);
 
 	private:
 		std::string m_Input;
 		uint8_t m_InputCommand = 0;
+		std::string m_CustomString;
 
 		GameConfig m_GameConfig;
 		GameData m_GameData;
 
-		std::unordered_map<std::string, Interface> m_Interfaces;
-		std::stack<std::string> m_InterfaceStack;
+		InterfaceHandler m_InterfaceHandler;
+		LocationHandler m_LocationHandler;
+		LocaleHandler m_LocaleHandler;
+
+		std::vector<ItemStack> m_ItemStacks;
+
+		std::string m_SaveGameName;
+
+		LuaScript m_ControlScript;
 
 	private:
 		static Console* s_Instance;

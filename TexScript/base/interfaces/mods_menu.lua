@@ -2,7 +2,7 @@ local interface = {
 	type = "interface",
 	id = "INF_MODS",
 	messages = {
-		"MSG"
+		"MSG_MODS_MENU"
 	},
 	commands = {
 		{ id = "CMD_BACK", flags = { "PopInf" } }
