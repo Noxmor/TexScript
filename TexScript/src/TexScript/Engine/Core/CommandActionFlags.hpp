@@ -10,7 +10,8 @@ namespace TexScript {
 		PushInf = BIT(1),
 		PopInf = BIT(2),
 		NewGame = BIT(4),
-		LoadGame = BIT(5)
+		LoadGame = BIT(5),
+		Move = BIT(6)
 	};
 
 	static CommandActionFlag StringToCommandActionFlag(const std::string& flag)
@@ -21,6 +22,7 @@ namespace TexScript {
 		flags["PopInf"] = CommandActionFlag::PopInf;
 		flags["NewGame"] = CommandActionFlag::NewGame;
 		flags["LoadGame"] = CommandActionFlag::LoadGame;
+		flags["Move"] = CommandActionFlag::Move;
 
 		if (flags.find(flag) != flags.end())
 		{

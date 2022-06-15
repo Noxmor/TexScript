@@ -20,6 +20,9 @@ namespace TexScript {
 		if (cmdTable.HasStringData("push_id"))
 			cmd.PushInfID = cmdTable.StringData("push_id");
 
+		if (cmdTable.HasIntData("loc_id"))
+			cmd.LocationID = cmdTable.IntData("loc_id");
+
 		if (cmdTable.HasTableData("flags"))
 		{
 			const LuaTable& flagsTable = cmdTable.TableData("flags");
@@ -143,6 +146,29 @@ namespace TexScript {
 			{
 				m_SaveGameName = m_CustomString;
 				LoadSaveGame();
+			}
+
+			if (cmd.CommandActionFlags & CommandActionFlag::Move)
+			{
+				m_LocationHandler.Travel(cmd.LocationID);
+
+				lua_State* const L = m_ControlScript.LuaState();
+				lua_getglobal(L, "data");
+				lua_pushstring(L, "current_loc");
+				lua_newtable(L);
+				lua_pushstring(L, "id");
+				lua_pushinteger(L, m_LocationHandler.CurrentLocationID());
+				lua_settable(L, -3);
+				lua_pushstring(L, "paths");
+				lua_newtable(L);
+				for (size_t i = 0; i < m_LocationHandler.CurrentLocation().Paths.size(); i++)
+				{
+					lua_pushinteger(L, i + 1);
+					lua_pushinteger(L, m_LocationHandler.CurrentLocation().Paths.at(i));
+					lua_settable(L, -3);
+				}
+				lua_settable(L, -3);
+				lua_settable(L, -3);
 			}
 		}
 

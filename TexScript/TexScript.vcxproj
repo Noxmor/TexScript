@@ -150,10 +150,10 @@
     <ClInclude Include="src\TexScript\Engine\Core\Console.hpp" />
     <ClInclude Include="src\TexScript\Engine\Core\GameConfig.hpp" />
     <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp" />
+    <ClInclude Include="src\TexScript\Engine\Core\LocaleHandler.hpp" />
     <ClInclude Include="src\TexScript\Engine\Interface\Interface.hpp" />
     <ClInclude Include="src\TexScript\Engine\Interface\InterfaceHandler.hpp" />
     <ClInclude Include="src\TexScript\Engine\Items\ItemStack.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\LocaleHandler.hpp" />
     <ClInclude Include="src\TexScript\Engine\Location\Location.hpp" />
     <ClInclude Include="src\TexScript\Engine\Location\LocationHandler.hpp" />
     <ClInclude Include="src\TexScript\Lua\LuaScript.hpp" />
@@ -165,8 +165,8 @@
     <ClCompile Include="src\TexScript\Base\EntryPoint.cpp" />
     <ClCompile Include="src\TexScript\Base\Log.cpp" />
     <ClCompile Include="src\TexScript\Engine\Core\Console.cpp" />
-    <ClCompile Include="src\TexScript\Engine\Interface\InterfaceHandler.cpp" />
     <ClCompile Include="src\TexScript\Engine\Core\LocaleHandler.cpp" />
+    <ClCompile Include="src\TexScript\Engine\Interface\InterfaceHandler.cpp" />
     <ClCompile Include="src\TexScript\Engine\Location\LocationHandler.cpp" />
     <ClCompile Include="src\TexScript\Lua\LuaScript.cpp" />
     <ClCompile Include="src\tspch.cpp">

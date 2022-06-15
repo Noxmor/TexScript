@@ -13,6 +13,15 @@
     <Filter Include="TexScript\Engine\Core">
       <UniqueIdentifier>{885F0323-F4CB-BE1D-BDBF-567B29EBE085}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TexScript\Engine\Interface">
+      <UniqueIdentifier>{10211AC5-FC30-C695-65EA-2AB45119B52E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TexScript\Engine\Items">
+      <UniqueIdentifier>{A16BDE83-8D65-07D6-76D2-9DE6626B6D42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TexScript\Engine\Location">
+      <UniqueIdentifier>{580584D8-C4C7-B762-0D78-46EF79799040}</UniqueIdentifier>
+    </Filter>
     <Filter Include="TexScript\Lua">
       <UniqueIdentifier>{1CB3B37C-8873-2FB3-51AE-7830BD2D748F}</UniqueIdentifier>
     </Filter>
@@ -45,8 +54,23 @@
     <ClInclude Include="src\TexScript\Engine\Core\GameData.hpp">
       <Filter>TexScript\Engine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\TexScript\Engine\Interface\Interface.hpp">
+    <ClInclude Include="src\TexScript\Engine\Core\LocaleHandler.hpp">
       <Filter>TexScript\Engine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Interface\Interface.hpp">
+      <Filter>TexScript\Engine\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Interface\InterfaceHandler.hpp">
+      <Filter>TexScript\Engine\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Items\ItemStack.hpp">
+      <Filter>TexScript\Engine\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Location\Location.hpp">
+      <Filter>TexScript\Engine\Location</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TexScript\Engine\Location\LocationHandler.hpp">
+      <Filter>TexScript\Engine\Location</Filter>
     </ClInclude>
     <ClInclude Include="src\TexScript\Lua\LuaScript.hpp">
       <Filter>TexScript\Lua</Filter>
@@ -55,11 +79,6 @@
       <Filter>TexScript\Lua</Filter>
     </ClInclude>
     <ClInclude Include="src\tspch.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Interface\InterfaceHandler.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Location\Location.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Core\LocaleHandler.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Items\ItemStack.hpp" />
-    <ClInclude Include="src\TexScript\Engine\Location\LocationHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TexScript\Base\Application.cpp">
@@ -74,12 +93,18 @@
     <ClCompile Include="src\TexScript\Engine\Core\Console.cpp">
       <Filter>TexScript\Engine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\TexScript\Engine\Core\LocaleHandler.cpp">
+      <Filter>TexScript\Engine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexScript\Engine\Interface\InterfaceHandler.cpp">
+      <Filter>TexScript\Engine\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TexScript\Engine\Location\LocationHandler.cpp">
+      <Filter>TexScript\Engine\Location</Filter>
+    </ClCompile>
     <ClCompile Include="src\TexScript\Lua\LuaScript.cpp">
       <Filter>TexScript\Lua</Filter>
     </ClCompile>
     <ClCompile Include="src\tspch.cpp" />
-    <ClCompile Include="src\TexScript\Engine\Interface\InterfaceHandler.cpp" />
-    <ClCompile Include="src\TexScript\Engine\Core\LocaleHandler.cpp" />
-    <ClCompile Include="src\TexScript\Engine\Location\LocationHandler.cpp" />
   </ItemGroup>
 </Project>
