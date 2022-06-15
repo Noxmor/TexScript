@@ -35,7 +35,8 @@ namespace TexScript {
 			return;
 		}
 
-		m_CurrentLocationID = id;
+		if(!m_Locations.at(id).Locked)
+			m_CurrentLocationID = id;
 	}
 
 	bool LocationHandler::Validate() const

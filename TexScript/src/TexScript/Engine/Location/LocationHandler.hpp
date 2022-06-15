@@ -14,8 +14,11 @@ namespace TexScript {
 
 		void Travel(const size_t id);
 
-		const Location& CurrentLocation() const { return m_Locations.at(m_CurrentLocationID); }
-		Location& CurrentLocation() { return m_Locations.at(m_CurrentLocationID); }
+		const Location& GetLocation(const size_t id) const { return m_Locations.at(id); }
+		Location& GetLocation(const size_t id) { return m_Locations.at(id); }
+
+		const Location& CurrentLocation() const { return GetLocation(m_CurrentLocationID); }
+		Location& CurrentLocation() { return GetLocation(m_CurrentLocationID); }
 
 		size_t CurrentLocationID() const { return m_CurrentLocationID; }
 
