@@ -2,6 +2,7 @@ local interface = {
 	type = "interface",
 	id = "INF_LOC",
 	messages = {
+		"MSG_REG_INFO",
 		"MSG_LOC_INFO"
 	},
 	commands = {

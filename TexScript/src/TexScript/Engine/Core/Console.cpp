@@ -10,6 +10,50 @@ namespace TexScript {
 
 	Console* Console::s_Instance = nullptr;
 
+	static Interface& DecodeLuaInterface(const LuaTable& infTable, InterfaceHandler& infHandler)
+	{
+		Interface inf;
+
+		const std::string& infID = infTable.StringData("id");
+
+		if (infTable.HasBoolData("main"))
+		{
+			const bool isMainInf = infTable.BoolData("main");
+			if (isMainInf)
+				infHandler.Push(infID);
+		}
+
+		if (infTable.HasTableData("messages"))
+		{
+			const LuaTable& messages = infTable.TableData("messages");
+			for (auto it = messages.StringData().begin(); it != messages.StringData().end(); ++it)
+			{
+				const std::string& msg = it->second;
+				inf.Messages.emplace_back(msg);
+			}
+		}
+
+		if (infTable.HasTableData("commands") && !infTable.HasTableData("custom_command"))
+		{
+			const LuaTable& commands = infTable.TableData("commands");
+
+			for (auto it = commands.TableData().begin(); it != commands.TableData().end(); ++it)
+			{
+				const Command cmd = DecodeLuaCommand(it->second);
+				inf.Commands.emplace_back(cmd);
+			}
+		}
+
+		if (infTable.HasTableData("custom_command"))
+		{
+			const LuaTable& customCommand = infTable.TableData("custom_command");
+			inf.CustomCommand = DecodeLuaCommand(customCommand);
+		}
+
+		infHandler.RegisterInterface(infID, inf);
+		return infHandler.GetInterface(infID);
+	}
+
 	static Command DecodeLuaCommand(const LuaTable& cmdTable)
 	{
 		Command cmd;
@@ -32,6 +76,28 @@ namespace TexScript {
 		}
 
 		return cmd;
+	}
+
+	static Location& DecodeLuaLocation(const LuaTable& locTable, LocationHandler& locHandler)
+	{
+		Location loc;
+		loc.LocationID = locTable.IntData("id");
+
+		if (locTable.HasStringData("region"))
+			loc.RegionID = locTable.StringData("region");
+
+		if (locTable.HasBoolData("locked"))
+			loc.Locked = locTable.BoolData("locked");
+
+		if (locTable.HasBoolData("visible"))
+			loc.Locked = locTable.BoolData("visible");
+
+		const LuaTable& paths = locTable.TableData("paths");
+		for (auto it = paths.IntData().begin(); it != paths.IntData().end(); ++it)
+			loc.Paths.emplace_back(it->second);
+
+		locHandler.RegisterLocation(loc);
+		return locHandler.GetLocation(loc.LocationID);
 	}
 
 	Console::Console(const std::string& title)
@@ -184,65 +250,10 @@ namespace TexScript {
 		const std::string& type = table.StringData("type");
 
 		if (type == "interface")
-		{
-			const std::string& infID = table.StringData("id");
-			Interface inf;
-
-			if (table.HasBoolData("main"))
-			{
-				const bool isMainInf = table.BoolData("main");
-				if (isMainInf)
-					m_InterfaceHandler.Push(infID);
-			}
-
-			if (table.HasTableData("messages"))
-			{
-				const LuaTable& messages = table.TableData("messages");
-				for (auto& it = messages.StringData().begin(); it != messages.StringData().end(); ++it)
-				{
-					const std::string msg = it->second;
-					inf.Messages.emplace_back(msg);
-				}
-			}
-
-			if (table.HasTableData("commands") && !table.HasTableData("custom_command"))
-			{
-				
-				const LuaTable& commands = table.TableData("commands");
-
-				for (auto it = commands.TableData().begin(); it != commands.TableData().end(); ++it)
-				{
-					const Command cmd = DecodeLuaCommand(it->second);
-					inf.Commands.emplace_back(cmd);
-				}
-			}
-
-			if (table.HasTableData("custom_command"))
-			{
-				const LuaTable& customCommand = table.TableData("custom_command");
-				inf.CustomCommand = DecodeLuaCommand(customCommand);
-			}
-
-			m_InterfaceHandler.RegisterInterface(infID, inf);
-		}
+			DecodeLuaInterface(table, m_InterfaceHandler);
 
 		if (type == "location")
-		{
-			Location loc;
-			loc.LocationID = table.IntData("id");
-
-			if (table.HasBoolData("locked"))
-				loc.Locked = table.BoolData("locked");
-
-			if (table.HasBoolData("visible"))
-				loc.Locked = table.BoolData("visible");
-
-			const LuaTable& paths = table.TableData("paths");
-			for (auto it = paths.IntData().begin(); it != paths.IntData().end(); ++it)
-				loc.Paths.emplace_back(it->second);
-
-			m_LocationHandler.RegisterLocation(loc);
-		}
+			DecodeLuaLocation(table, m_LocationHandler);
 
 		if (type == "item")
 		{
@@ -456,6 +467,11 @@ namespace TexScript {
 				{
 					const std::string locationLocale = "LOC_" + std::to_string(m_LocationHandler.CurrentLocationID());
 					locale.replace(start, end + 1, m_LocaleHandler.Locale(locationLocale));
+				}
+
+				if (expression == "Loc.GetRegionName")
+				{
+					locale.replace(start, end + 1, m_LocaleHandler.Locale(m_LocationHandler.CurrentLocation().RegionID));
 				}
 
 				start = locale.find('[');
