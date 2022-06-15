@@ -1,6 +1,6 @@
 # TexScript
 
-## TexScript is a c++ Text Adventure Game with Lua mod support.
+## TexScript is a C++ Text Adventure Game with Lua mod support.
 
 Tescript features a base game, which can be seen as a standalone Text Adventure Game itself or be used to showcase the potential for moddind this game. While the internal system is handled via c++, the actual Text Adventure is created by using lua scripts. Internally, TexScript currently supports the following features:
 
