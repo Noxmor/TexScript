@@ -35,7 +35,7 @@ namespace TexScript {
 			return;
 		}
 
-		if(!m_Locations.at(id).Locked)
+		if (!m_Locations.at(id).Locked)
 			m_CurrentLocationID = id;
 	}
 

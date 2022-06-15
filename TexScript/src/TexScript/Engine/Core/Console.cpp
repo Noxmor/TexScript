@@ -10,6 +10,30 @@ namespace TexScript {
 
 	Console* Console::s_Instance = nullptr;
 
+	static Command DecodeLuaCommand(const LuaTable& cmdTable)
+	{
+		Command cmd;
+
+		if (cmdTable.HasStringData("id"))
+			cmd.DisplayNameID = cmdTable.StringData("id");
+
+		if (cmdTable.HasStringData("push_id"))
+			cmd.PushInfID = cmdTable.StringData("push_id");
+
+		if (cmdTable.HasIntData("loc_id"))
+			cmd.LocationID = cmdTable.IntData("loc_id");
+
+		if (cmdTable.HasTableData("flags"))
+		{
+			const LuaTable& flagsTable = cmdTable.TableData("flags");
+
+			for (const auto& [key, flag] : flagsTable.StringData())
+				cmd.CommandActionFlags |= StringToCommandActionFlag(flag);
+		}
+
+		return cmd;
+	}
+
 	static Interface& DecodeLuaInterface(const LuaTable& infTable, InterfaceHandler& infHandler)
 	{
 		Interface inf;
@@ -54,30 +78,6 @@ namespace TexScript {
 		return infHandler.GetInterface(infID);
 	}
 
-	static Command DecodeLuaCommand(const LuaTable& cmdTable)
-	{
-		Command cmd;
-
-		if(cmdTable.HasStringData("id"))
-			cmd.DisplayNameID = cmdTable.StringData("id");
-
-		if (cmdTable.HasStringData("push_id"))
-			cmd.PushInfID = cmdTable.StringData("push_id");
-
-		if (cmdTable.HasIntData("loc_id"))
-			cmd.LocationID = cmdTable.IntData("loc_id");
-
-		if (cmdTable.HasTableData("flags"))
-		{
-			const LuaTable& flagsTable = cmdTable.TableData("flags");
-
-			for (const auto& [key, flag] : flagsTable.StringData())
-				cmd.CommandActionFlags |= StringToCommandActionFlag(flag);
-		}
-
-		return cmd;
-	}
-
 	static Location& DecodeLuaLocation(const LuaTable& locTable, LocationHandler& locHandler)
 	{
 		Location loc;
@@ -90,7 +90,7 @@ namespace TexScript {
 			loc.Locked = locTable.BoolData("locked");
 
 		if (locTable.HasBoolData("visible"))
-			loc.Locked = locTable.BoolData("visible");
+			loc.Visible = locTable.BoolData("visible");
 
 		const LuaTable& paths = locTable.TableData("paths");
 		for (auto it = paths.IntData().begin(); it != paths.IntData().end(); ++it)
