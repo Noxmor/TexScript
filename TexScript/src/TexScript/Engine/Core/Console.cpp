@@ -5,6 +5,7 @@
 #include "TexScript/Base/Application.hpp"
 
 #include <fstream>
+#include <filesystem>
 
 namespace TexScript {
 
@@ -22,6 +23,9 @@ namespace TexScript {
 
 		if (cmdTable.HasIntData("loc_id"))
 			cmd.LocationID = cmdTable.IntData("loc_id");
+
+		if (cmdTable.HasStringData("language_id"))
+			cmd.LanguageID = cmdTable.StringData("language_id");
 
 		if (cmdTable.HasTableData("flags"))
 		{
@@ -126,10 +130,27 @@ namespace TexScript {
 		//Enables reading characters e.g. umlaute
 		std::locale::global(std::locale(""));
 
-		m_LocaleHandler.Load("base/locale/german/base.cfg");
+		m_LocaleHandler.Load("base/locale/" + m_GameConfig.Language + "/base.cfg");
 
 		lua_State* const L = m_ControlScript.LuaState();
 		lua_getglobal(L, "data");
+		lua_pushstring(L, "languages");
+		lua_newtable(L);
+		size_t dirCount = 0;
+		for (const auto dir : std::filesystem::directory_iterator("base/locale"))
+		{
+			if (!dir.is_directory())
+				continue;
+
+			std::string language = dir.path().filename().u8string();
+			for (char& c : language)
+				c = std::toupper(c);
+
+			lua_pushinteger(L, ++dirCount);
+			lua_pushstring(L, language.c_str());
+			lua_settable(L, -3);
+		}
+		lua_settable(L, -3);
 		lua_pushstring(L, "current_loc");
 		lua_newtable(L);
 		lua_pushstring(L, "id");
@@ -189,22 +210,6 @@ namespace TexScript {
 					TS_ERROR("[Console]: (PushInf) Invalid interface ID!");
 			}
 
-			if (cmd.CommandActionFlags & CommandActionFlag::PopInf)
-			{
-				const std::string poppedInfID = m_InterfaceHandler.CurrentInterfaceID();
-				m_InterfaceHandler.Pop();
-
-				lua_State* L = m_ControlScript.LuaState();
-				lua_newtable(L);
-				lua_pushstring(L, "inf");
-				lua_newtable(L);
-				lua_pushstring(L, "id");
-				lua_pushstring(L, poppedInfID.c_str());
-				lua_settable(L, -3);
-				lua_settable(L, -3);
-				m_ControlScript.Call("onPopInterface", 1, 0);
-			}
-
 			if (cmd.CommandActionFlags & CommandActionFlag::NewGame)
 				m_SaveGameName = m_CustomString;
 
@@ -235,6 +240,37 @@ namespace TexScript {
 				}
 				lua_settable(L, -3);
 				lua_settable(L, -3);
+			}
+
+			if (cmd.CommandActionFlags & CommandActionFlag::Language)
+			{
+				std::string newLanguage = cmd.LanguageID;
+				for (char& c : newLanguage)
+					c = std::tolower(c);
+
+				if (m_GameConfig.Language != newLanguage)
+				{
+
+					m_GameConfig.Language = newLanguage;
+					m_LocaleHandler.Clear();
+					m_LocaleHandler.Load("base/locale/" + m_GameConfig.Language + "/base.cfg");
+				}
+			}
+
+			if (cmd.CommandActionFlags & CommandActionFlag::PopInf)
+			{
+				const std::string poppedInfID = m_InterfaceHandler.CurrentInterfaceID();
+				m_InterfaceHandler.Pop();
+
+				lua_State* L = m_ControlScript.LuaState();
+				lua_newtable(L);
+				lua_pushstring(L, "inf");
+				lua_newtable(L);
+				lua_pushstring(L, "id");
+				lua_pushstring(L, poppedInfID.c_str());
+				lua_settable(L, -3);
+				lua_settable(L, -3);
+				m_ControlScript.Call("onPopInterface", 1, 0);
 			}
 		}
 
