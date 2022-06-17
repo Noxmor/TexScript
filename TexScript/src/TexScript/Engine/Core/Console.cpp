@@ -250,7 +250,6 @@ namespace TexScript {
 
 				if (m_GameConfig.Language != newLanguage)
 				{
-
 					m_GameConfig.Language = newLanguage;
 					m_LocaleHandler.Clear();
 					m_LocaleHandler.Load("base/locale/" + m_GameConfig.Language + "/base.cfg");
