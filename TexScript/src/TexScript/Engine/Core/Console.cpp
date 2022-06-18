@@ -286,8 +286,6 @@ namespace TexScript {
 
 	void Console::RegisterLuaTable(const LuaTable& table)
 	{
-		table.Print();
-
 		if (!table.HasStringData("type")) return;
 
 		const std::string& type = table.StringData("type");
