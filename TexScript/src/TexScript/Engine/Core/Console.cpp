@@ -380,7 +380,51 @@ namespace TexScript {
 
 	void Console::LoadConfig()
 	{
-		//TODO: Load config
+		const std::string filepath = "config.cfg";
+		std::ifstream file(filepath);
+
+		if (file.fail())
+		{
+			TS_ERROR("[Console]: Failed to open file '{0}'!", filepath);
+			file.close();
+			return;
+		}
+
+		std::string line;
+		while (std::getline(file, line))
+		{
+			if (line.empty())
+				continue;
+
+			if (line.find('=') == std::string::npos)
+			{
+				TS_WARN("[Console]: Error while reading line ({0}): Key and value are not seperated by '='!", filepath);
+				continue;
+			}
+
+			if (line.at(0) == '=')
+			{
+				TS_WARN("[Console]: Error while reading line ({0}): Line cannot start with '='!", filepath);
+				continue;
+			}
+
+			const std::string value = line.substr(line.find('=') + 1);
+			if (value.empty())
+			{
+				TS_WARN("[Console]: Error while reading line ({0}): Value was not specified!", filepath);
+				continue;
+			}
+
+			const std::string key = line.substr(0, line.find('='));
+
+			if (key == "CHARACTERS_PER_LINE")
+				m_GameConfig.CharactersPerLine = std::stoi(value);
+
+			if (key == "LANGUAGE")
+				m_GameConfig.Language = value;
+		}
+
+		file.close();
 	}
 
 	void Console::LoadSaveGame()
@@ -396,8 +440,8 @@ namespace TexScript {
 
 	void Console::SaveConfig()
 	{
-		const std::string content = "CHARACTERS_PER_LINE = " + std::to_string(m_GameConfig.CharactersPerLine) + '\n'
-			+ "LANGUAGE = \"" + m_GameConfig.Language + "\"";
+		const std::string content = "CHARACTERS_PER_LINE=" + std::to_string(m_GameConfig.CharactersPerLine) + '\n'
+			+ "LANGUAGE=" + m_GameConfig.Language;
 
 		std::ofstream of("config.cfg");
 		of << content;
