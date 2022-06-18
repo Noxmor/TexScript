@@ -261,6 +261,9 @@ namespace TexScript {
 				}
 			}
 
+			if (cmd.CommandActionFlags & CommandActionFlag::Mod)
+				m_GameConfig.GameDir = cmd.DisplayNameID;
+
 			if (cmd.CommandActionFlags & CommandActionFlag::PopInf)
 			{
 				const std::string poppedInfID = m_InterfaceHandler.CurrentInterfaceID();
@@ -390,7 +393,7 @@ namespace TexScript {
 
 		if (file.fail())
 		{
-			TS_ERROR("[Console]: Failed to open file '{0}'!", filepath);
+			TS_WARN("[Console]: No config found, using default settings!");
 			file.close();
 			return;
 		}
@@ -441,6 +444,9 @@ namespace TexScript {
 
 			if (key == "LANGUAGE")
 				m_GameConfig.Language = value;
+
+			if (key == "GAME_DIR")
+				m_GameConfig.GameDir = value;
 		}
 
 		file.close();
