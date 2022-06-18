@@ -1,197 +1,197 @@
-[13:01:04] [info] TEXSCRIPT: Initialized Log!
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_MAIN
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: main, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_PLAY
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_PLAY
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_MODS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_MODS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 4
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_QUIT
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : Quit
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_MAIN_MENU
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_MODS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_MODS_MENU
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_LANGUAGE_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_LANGUAGE_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_LAYOUT_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_LAYOUT_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_OPTIONS_MENU
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_LANGUAGE_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_LANGUAGE_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_PLAY
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_NEW_GAME
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_NEW_GAME
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_LOAD_GAME
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_LOAD_GAME
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_PLAY_MENU
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_NEW_GAME
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_NEW_GAME
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: custom_command
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: push_id, Value : INF_LOC
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: 2, Value : NewGame
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_LOC
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_TRAVEL
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_TRAVEL
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_SEARCH
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_SEARCH
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_INV
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_INV
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 4
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_STATS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_STATS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 5
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_OPTIONS
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 6
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_QUIT
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : Quit
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_REG_INFO
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 2, Value : MSG_LOC_INFO
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_TRAVEL
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_TRAVEL_MENU
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 0
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 0
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 2, Value : 2
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 3, Value : 3
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 4, Value : 4
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 5, Value : 5
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 6, Value : 6
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 2
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 3
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 4
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 5
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 6
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : item
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : ITEM_MEDICAL_HERB
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: stack_size, Value : 99
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : item
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : ITEM_MAGICAL_HERB
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: stack_size, Value : 99
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : character
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : CHAR_TEST
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: stats
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: hp, Value : 10
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: attack, Value : 6
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: max_hp, Value : 10
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: defense, Value : 4
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: mp, Value : 5
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: agility, Value : 8
-[13:01:04] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: max_mp, Value : 5
-[13:01:04] [info] TEXSCRIPT: Initialized App!
-[13:01:10] [info] TEXSCRIPT: Shutting down App!
+[13:14:51] [info] TEXSCRIPT: Initialized Log!
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_MAIN
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: main, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_MAIN_MENU
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_PLAY
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_PLAY
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_MODS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_MODS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 4
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_QUIT
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : Quit
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_MODS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_MODS_MENU
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_OPTIONS_MENU
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_LANGUAGE_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_LANGUAGE_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_LAYOUT_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_LAYOUT_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_LANGUAGE_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_LANGUAGE_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_PLAY
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_PLAY_MENU
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_NEW_GAME
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_NEW_GAME
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_LOAD_GAME
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_LOAD_GAME
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_BACK
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PopInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_NEW_GAME
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_NEW_GAME
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: custom_command
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: push_id, Value : INF_LOC
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: 2, Value : NewGame
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_LOC
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_REG_INFO
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 2, Value : MSG_LOC_INFO
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: commands
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_TRAVEL
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_TRAVEL
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 2
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_SEARCH
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_SEARCH
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 3
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_INV
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_INV
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 4
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_STATS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_STATS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 5
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: push_id, Value : INF_OPTIONS
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : PushInf
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Table)Name: 6
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Data)Key: id, Value : CMD_QUIT
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:       (Table)Name: flags
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:          (Data)Key: 1, Value : Quit
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : interface
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : INF_TRAVEL
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: messages
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : MSG_TRAVEL_MENU
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 0
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 0
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 2, Value : 2
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 3, Value : 3
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 4, Value : 4
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 5, Value : 5
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 6, Value : 6
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 2
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 3
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 4
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 5
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: region, Value : REG_LEVEL_7
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : location
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : 6
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: locked, Value : false
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: visible, Value : true
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: paths
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: 1, Value : 1
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : item
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : ITEM_MEDICAL_HERB
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: stack_size, Value : 99
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : item
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : ITEM_MAGICAL_HERB
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: stack_size, Value : 99
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: type, Value : character
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Data)Key: id, Value : CHAR_TEST
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]: (Table)Name: stats
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: max_hp, Value : 10
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: mp, Value : 5
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: agility, Value : 8
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: hp, Value : 10
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: attack, Value : 6
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: defense, Value : 4
+[13:14:51] [trace] TEXSCRIPT: [LuaTable]:    (Data)Key: max_mp, Value : 5
+[13:14:51] [info] TEXSCRIPT: Initialized App!
+[13:15:15] [info] TEXSCRIPT: Shutting down App!

@@ -22,6 +22,8 @@ namespace TexScript {
 
 		size_t CurrentLocationID() const { return m_CurrentLocationID; }
 
+		const std::vector<Location>& GetLocations() const { return m_Locations; }
+
 		bool Validate() const;
 
 	private:

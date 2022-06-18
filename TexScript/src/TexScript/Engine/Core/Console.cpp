@@ -211,7 +211,10 @@ namespace TexScript {
 			}
 
 			if (cmd.CommandActionFlags & CommandActionFlag::NewGame)
+			{
 				m_SaveGameName = m_CustomString;
+				SaveGame();
+			}
 
 			if (cmd.CommandActionFlags & CommandActionFlag::LoadGame)
 			{
@@ -457,11 +460,26 @@ namespace TexScript {
 
 		if (file.fail())
 		{
-			TS_ERROR("Failed to serialize save game: {0}", m_SaveGameName);
+			TS_ERROR("[Console]: Failed to serialize save game: {0}", m_SaveGameName);
 			return;
 		}
 
-		file << "CURRENT_LOC=" << std::to_string(m_LocationHandler.CurrentLocationID());
+		file << "CURRENT_LOC=" << std::to_string(m_LocationHandler.CurrentLocationID()) << '\n';
+
+		for (const Location& loc : m_LocationHandler.GetLocations())
+		{
+			file << "[LocationData]" << '\n';
+			file << "ID=" << loc.LocationID << '\n';
+			file << "LOCKED=" << loc.Locked << '\n';
+			file << "VISIBLE=" << loc.Visible << '\n';
+			file << "REG_ID=" << loc.RegionID << '\n';
+
+			file << "[PathData]" << '\n';
+			for (const size_t path : loc.Paths)
+			{
+				file << "PATH=" << path << '\n';
+			}
+		}
 
 		file.close();
 	}
