@@ -209,7 +209,7 @@ namespace TexScript {
 					m_ControlScript.Call("onPushInterface", 1, 0);
 				}
 				else
-					TS_ERROR("[Console]: (PushInf) Invalid interface ID!");
+					TS_ERROR("[Console]: (PushInf) Invalid interface ID ({0})!", cmd.PushInfID);
 			}
 
 			if (cmd.CommandActionFlags & CommandActionFlag::NewGame)
