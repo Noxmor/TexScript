@@ -2,8 +2,10 @@
 **/bin/
 bin-int/
 
-# Logging
+# TexScript files
 *.log
+TexScript/config.cfg
+TexScript/saves
 
 # Visual Studio files and folder
 .vs/
