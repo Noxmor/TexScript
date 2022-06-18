@@ -13,8 +13,10 @@ namespace TexScript {
 	class LuaScript
 	{
 	public:
-		LuaScript(const std::string& filepath);
+		LuaScript();
 		~LuaScript();
+
+		void Load(const std::string& filepath);
 
 		bool PushVarOnStack(const std::string& var) const;
 

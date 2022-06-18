@@ -9,6 +9,7 @@ namespace TexScript {
 	{
 		uint8_t CharactersPerLine = 64;
 		std::string Language = "english";
+		std::string GameDir = "base";
 	};
 
 }

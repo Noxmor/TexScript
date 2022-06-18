@@ -159,24 +159,44 @@ namespace TexScript {
 		return 0;
 	}
 
-	LuaScript::LuaScript(const std::string& filepath)
-		: m_Filepath(filepath)
+	LuaScript::LuaScript()
 	{
 		L = luaL_newstate();
 		luaL_openlibs(L);
+
+		luaL_dostring(L, "package.path = \"data/base/?.lua\"");
+	}
+
+	LuaScript::~LuaScript()
+	{
+		if (L)
+			lua_close(L);
+	}
+
+	void LuaScript::Load(const std::string& filepath)
+	{
+		if (!m_Filepath.empty())
+		{
+			TS_WARN("[LuaScript]: Tried to load script more than once!");
+			return;
+		}
+		
+		m_Filepath = filepath;
 
 		lua_register(L, "print", LuaPrint);
 
 		lua_newtable(L);
 
-		if (filepath == "base/data.lua")
+		//TODO: Remove
+		if (filepath == "data/base/data.lua")
 		{
 			lua_pushstring(L, "extend");
 			lua_pushcfunction(L, LuaExtend);
 			lua_settable(L, -3);
 		}
 
-		if (filepath == "base/control.lua")
+		//TODO: Remove
+		if (filepath == "data/base/control.lua")
 		{
 			lua_pushstring(L, "addCommand");
 			lua_pushcfunction(L, LuaAddCommand);
@@ -186,10 +206,8 @@ namespace TexScript {
 			lua_settable(L, -3);
 		}
 
-		lua_setglobal(L, "data");
-
-		luaL_dostring(L, "package.path = \"base/?.lua\"");
-
+		lua_setglobal(L, "data"); 
+		
 		if (luaL_dofile(L, filepath.c_str()))
 		{
 			const std::string error = lua_tostring(L, -1);
@@ -197,12 +215,6 @@ namespace TexScript {
 			lua_close(L);
 			L = nullptr;
 		}
-	}
-
-	LuaScript::~LuaScript()
-	{
-		if (L)
-			lua_close(L);
 	}
 
 	bool LuaScript::PushVarOnStack(const std::string& var) const

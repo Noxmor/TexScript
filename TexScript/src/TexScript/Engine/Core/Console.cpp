@@ -105,7 +105,6 @@ namespace TexScript {
 	}
 
 	Console::Console(const std::string& title)
-		: m_ControlScript("base/control.lua")
 	{
 		TS_ASSERT(!s_Instance, "Console already exists!");
 		s_Instance = this;
@@ -114,8 +113,11 @@ namespace TexScript {
 
 		Load();
 
-		LuaScript script("base/data.lua");
+		LuaScript script;
+		script.Load("data/" + m_GameConfig.GameDir + "/data.lua");
 		TS_ASSERT(script, "Script is not valid!");
+
+		m_ControlScript.Load("data/" + m_GameConfig.GameDir + "/control.lua");
 		TS_ASSERT(m_ControlScript, "Script is not valid!");
 
 		bool hasQuitCmd = false;
@@ -127,17 +129,17 @@ namespace TexScript {
 
 		TS_ASSERT(hasQuitCmd, "The main interface needs to have a quit command!");
 
-		//Enables reading characters e.g. umlaute
+		//Enables reading special characters e.g. umlaute
 		std::locale::global(std::locale(""));
 
-		m_LocaleHandler.Load("base/locale/" + m_GameConfig.Language + "/base.cfg");
+		m_LocaleHandler.Load("data/" + m_GameConfig.GameDir + "/locale/" + m_GameConfig.Language + "/" + m_GameConfig.GameDir + ".cfg");
 
 		lua_State* const L = m_ControlScript.LuaState();
 		lua_getglobal(L, "data");
 		lua_pushstring(L, "languages");
 		lua_newtable(L);
 		size_t dirCount = 0;
-		for (const auto dir : std::filesystem::directory_iterator("base/locale"))
+		for (const auto dir : std::filesystem::directory_iterator("data/" + m_GameConfig.GameDir + "/locale"))
 		{
 			if (!dir.is_directory())
 				continue;
@@ -255,7 +257,7 @@ namespace TexScript {
 				{
 					m_GameConfig.Language = newLanguage;
 					m_LocaleHandler.Clear();
-					m_LocaleHandler.Load("base/locale/" + m_GameConfig.Language + "/base.cfg");
+					m_LocaleHandler.Load("data/" + m_GameConfig.GameDir + "/locale/" + m_GameConfig.Language + "/" + m_GameConfig.GameDir + ".cfg");
 				}
 			}
 
@@ -421,7 +423,21 @@ namespace TexScript {
 			const std::string key = line.substr(0, line.find('='));
 
 			if (key == "CHARACTERS_PER_LINE")
-				m_GameConfig.CharactersPerLine = std::stoi(value);
+			{
+				bool isInteger = true;
+				for (const char c : value)
+				{
+					if (!std::isdigit(c))
+					{
+						isInteger = false;
+						TS_WARN("[Console]: Config: CHARACTERS_PER_LINE value can not be converted to int!");
+						break;
+					}
+				}
+
+				if(isInteger)
+					m_GameConfig.CharactersPerLine = std::stoi(value);
+			}
 
 			if (key == "LANGUAGE")
 				m_GameConfig.Language = value;
@@ -443,11 +459,12 @@ namespace TexScript {
 
 	void Console::SaveConfig()
 	{
-		const std::string content = "CHARACTERS_PER_LINE=" + std::to_string(m_GameConfig.CharactersPerLine) + '\n'
-			+ "LANGUAGE=" + m_GameConfig.Language;
-
 		std::ofstream of("config.cfg");
-		of << content;
+
+		of << "CHARACTERS_PER_LINE=" << std::to_string(m_GameConfig.CharactersPerLine) << '\n';
+		of << "LANGUAGE=" << m_GameConfig.Language << '\n';
+		of << "GAME_DIR=" << m_GameConfig.GameDir;
+
 		of.close();
 	}
 
