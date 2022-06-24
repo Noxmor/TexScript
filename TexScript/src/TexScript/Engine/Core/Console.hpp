@@ -9,7 +9,7 @@
 
 #include "TexScript/Engine/Location/LocationHandler.hpp"
 
-#include "TexScript/Engine/Items/ItemStack.hpp"
+#include "TexScript/Engine/Items/Inventory.hpp"
 
 #include "TexScript/Lua/LuaScript.hpp"
 #include "TexScript/Lua/LuaTable.hpp"
@@ -67,7 +67,7 @@ namespace TexScript {
 		LocationHandler m_LocationHandler;
 		LocaleHandler m_LocaleHandler;
 
-		std::vector<ItemStack> m_ItemStacks;
+		Inventory m_Inventory;
 
 		std::string m_SaveGameName;
 

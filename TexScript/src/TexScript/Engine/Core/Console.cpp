@@ -100,6 +100,18 @@ namespace TexScript {
 		for (auto it = paths.IntData().begin(); it != paths.IntData().end(); ++it)
 			loc.Paths.emplace_back(it->second);
 
+		if (locTable.HasTableData("items"))
+		{
+			const LuaTable& items = locTable.TableData("items");
+			for (auto it = items.TableData().begin(); it != items.TableData().end(); ++it)
+			{
+				ItemStack item;
+				item.ItemStackID = it->second.StringData("id");
+				item.Count = it->second.IntData("count");
+				loc.Items.emplace_back(item);
+			}
+		}
+
 		locHandler.RegisterLocation(loc);
 		return locHandler.GetLocation(loc.LocationID);
 	}
@@ -164,6 +176,25 @@ namespace TexScript {
 		{
 			lua_pushinteger(L, i + 1);
 			lua_pushinteger(L, m_LocationHandler.CurrentLocation().Paths.at(i));
+			lua_settable(L, -3);
+		}
+		lua_settable(L, -3);
+		lua_settable(L, -3);
+		lua_pushstring(L, "inventory");
+		lua_newtable(L);
+		lua_pushstring(L, "items");
+		lua_newtable(L);
+		for (size_t i = 0; i < m_Inventory.Items().size(); i++)
+		{
+			const ItemStack& item = m_Inventory.Items().at(i);
+			lua_pushinteger(L, i + 1);
+			lua_newtable(L);
+			lua_pushstring(L, "id");
+			lua_pushstring(L, item.ItemStackID.c_str());
+			lua_settable(L, -3);
+			lua_pushstring(L, "count");
+			lua_pushinteger(L, item.Count);
+			lua_settable(L, -3);
 			lua_settable(L, -3);
 		}
 		lua_settable(L, -3);
@@ -264,6 +295,15 @@ namespace TexScript {
 			if (cmd.CommandActionFlags & CommandActionFlag::Mod)
 				m_GameConfig.GameDir = cmd.DisplayNameID;
 
+			if (cmd.CommandActionFlags & CommandActionFlag::Search)
+			{
+				//TODO: Move items from location to inventory!
+				for (const ItemStack& item : m_LocationHandler.CurrentLocation().Items)
+				{
+
+				}
+			}
+
 			if (cmd.CommandActionFlags & CommandActionFlag::PopInf)
 			{
 				const std::string poppedInfID = m_InterfaceHandler.CurrentInterfaceID();
@@ -295,14 +335,6 @@ namespace TexScript {
 
 		if (type == "location")
 			DecodeLuaLocation(table, m_LocationHandler);
-
-		if (type == "item")
-		{
-			ItemStack item;
-			item.ItemStackID = table.StringData("id");
-			item.StackSize = table.IntData("stack_size");
-			m_ItemStacks.emplace_back(item);
-		}
 	}
 
 	void Console::LuaAddCommand(const std::string& infID, const LuaTable& cmdTable)

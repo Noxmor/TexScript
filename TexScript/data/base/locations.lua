@@ -5,7 +5,11 @@ local locations = {
 		region = "REG_LEVEL_7",
 		locked = false,
 		visible = true,
-		paths = { 1 }
+		paths = { 1 },
+		items = {
+			{ id = "ITEM_MEDICAL_HERB", count = 1 },
+			{ id = "ITEM_MAGICAL_HERB", count = 1 }
+		}
 	},
 	{
 		type = "location",

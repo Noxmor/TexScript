@@ -50,9 +50,26 @@ namespace TexScript {
 		file.close();
 	}
 
-	const std::string& LocaleHandler::Locale(const std::string& key)
+	std::string LocaleHandler::Locale(const std::string& key)
 	{
-		return m_Locales.find(key) != m_Locales.end() ? m_Locales.at(key) : key;
+		std::string locale;
+		std::string currentKey;
+
+		for (const char c : key)
+		{	
+			if (c != ' ')
+			{
+				currentKey += c;
+				continue;
+			}
+				
+			locale += (m_Locales.find(currentKey) != m_Locales.end() ? m_Locales.at(currentKey) : currentKey) + " ";
+			currentKey.clear();
+		}
+
+		locale += m_Locales.find(currentKey) != m_Locales.end() ? m_Locales.at(currentKey) : currentKey;
+
+		return locale;
 	}
 
 	void LocaleHandler::Clear()

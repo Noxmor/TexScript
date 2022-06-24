@@ -15,8 +15,7 @@ namespace TexScript {
 	{
 		std::string ItemStackID;
 		ItemStackType Type = ItemStackType::None;
-		size_t Count = 0;
-		size_t StackSize = 1;
+		size_t Count = 1;
 	};
 
 }

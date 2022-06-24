@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 
+#include "TexScript/Engine/Items/ItemStack.hpp"
+
 namespace TexScript {
 
 	struct Location
@@ -12,6 +14,7 @@ namespace TexScript {
 		bool Locked = false;
 		bool Visible = true;
 		std::vector<size_t> Paths;
+		std::vector<ItemStack> Items;
 	};
 
 }

@@ -10,7 +10,7 @@ namespace TexScript {
 
 		void Load(const std::string& filepath);
 
-		const std::string& Locale(const std::string& key);
+		std::string Locale(const std::string& key);
 
 		void Clear();
 
