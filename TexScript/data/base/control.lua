@@ -25,7 +25,7 @@ function onPushInterface(event)
 
 	if(event.inf.id == "INF_INV") then
 		for key, value in ipairs(data.inventory.items) do
-			data.addCommand(event.inf.id, { id = value.id .. " (x" .. value.count .. ")", flags = { "PopInf"} })
+			data.addCommand(event.inf.id, { id = value.id .. " (x" .. value.count .. ")", flags = { "PopInf" } })
 		end
 		data.addCommand(event.inf.id, { id = "CMD_BACK", flags = { "PopInf"} })
 	end
